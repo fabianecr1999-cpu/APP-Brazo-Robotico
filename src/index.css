@@ -2,18 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Eliminamos el scroll y forzamos el centrado en toda la ventana */
 html, body, #root {
-  height: 100vh !important;
-  width: 100vw !important;
+  height: 100% !important;
+  width: 100% !important;
   margin: 0;
   padding: 0;
-  background-color: #050a14; /* Fondo azul muy oscuro (Stark) */
-  color: #e2e8f0; /* Color de texto claro por defecto */
+  background-color: #050a14 !important;
+  color: #f1f5f9 !important; /* Texto visible por defecto */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
-/* Asegura que el simulador sea visible */
-svg {
-  display: block;
-  max-width: 100%;
-  height: auto;
+#root {
+  display: flex;
+  flex-direction: column;
 }
