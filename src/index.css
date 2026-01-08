@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root {
+  height: 100vh !important;
+  width: 100vw !important;
+  margin: 0;
+  padding: 0;
+  background-color: #050a14; /* Fondo azul muy oscuro (Stark) */
+  color: #e2e8f0; /* Color de texto claro por defecto */
+}
+
+/* Asegura que el simulador sea visible */
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}

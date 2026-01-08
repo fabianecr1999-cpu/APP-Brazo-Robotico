@@ -1,0 +1,5 @@
+{
+  "name": "DUM-E Control Lab",
+  "description": "An interactive educational interface for the DUM-E robotic arm. Features a didactic learning path, 3D digital twin simulation, visual programming, and direct Web Serial control for Arduino/ESP32.",
+  "requestFramePermissions": []
+}
