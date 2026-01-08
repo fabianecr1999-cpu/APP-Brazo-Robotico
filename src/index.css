@@ -2,20 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Eliminamos el scroll y forzamos el centrado en toda la ventana */
 html, body, #root {
-  height: 100% !important;
-  width: 100% !important;
+  height: 100vh !important;
+  width: 100vw !important;
   margin: 0;
   padding: 0;
-  background-color: #050a14 !important;
-  color: #f1f5f9 !important; /* Texto visible por defecto */
-  display: flex;
-  flex-direction: column;
   overflow: hidden;
+  background-color: #050a14 !important;
 }
 
 #root {
-  display: flex;
-  flex-direction: column;
+  display: block !important;
+  position: relative;
+}
+
+/* Paneles con efecto cristal */
+.glass-panel {
+  background: rgba(15, 23, 42, 0.9);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+ 
 }

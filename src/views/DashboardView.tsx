@@ -1,33 +1,37 @@
 import React from 'react';
-import { BookOpen, Cpu, PlayCircle, Terminal } from 'lucide-react';
+import { BookOpen, Cpu } from 'lucide-react';
 import { ViewMode, RobotState } from '../types';
-import RobotSimulator from '../components/RobotSimulator';
+import RobotSimulator3D from '../components/RobotSimulator3D';
 
-interface Props { setMode: (mode: ViewMode) => void; robotState: RobotState; }
+interface DashboardProps {
+  setMode: (mode: ViewMode) => void;
+  robotState: RobotState;
+}
 
-export const DashboardView: React.FC<Props> = ({ setMode, robotState }) => {
+export const DashboardView: React.FC<DashboardProps> = ({ setMode, robotState }) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-10 h-full w-full max-w-7xl mx-auto p-10 items-center">
-      <div className="flex flex-col items-center md:items-start text-center md:text-left">
-        <h1 className="text-6xl font-bold text-white mb-2 tracking-tighter">DUM-E <span className="text-cyan-400">LAB</span></h1>
-        <p className="text-slate-500 font-mono text-xs mb-10 tracking-[0.5em]">SYSTEM INTERFACE V1.0</p>
-        <div className="grid grid-cols-2 gap-4 w-full max-w-md">
-          <button onClick={() => setMode('LEARN')} className="bg-slate-900/50 p-6 rounded-2xl border border-slate-700 hover:border-cyan-400 transition-all flex flex-col items-center gap-3">
-            <BookOpen className="text-cyan-400" /><span className="text-xs text-white font-bold">LEARN</span>
+    /* Contenedor relativo para que el simulador (fixed) quede por debajo */
+    <div className="relative w-screen h-screen flex items-center justify-center overflow-hidden">
+      
+      {/* CAPA FONDO */}
+      <RobotSimulator3D state={robotState} isExploded={false} />
+
+      {/* CAPA INTERFAZ (Centrada automáticamente por el flex del padre) */}
+      <div className="relative z-10 flex flex-col items-center animate-in fade-in duration-700">
+        <h1 className="text-8xl font-black text-white tracking-tighter uppercase italic drop-shadow-[0_0_20px_rgba(0,240,255,0.4)] mb-12">
+          DUM-E <span className="text-cyan-400">3D</span>
+        </h1>
+        
+        <div className="flex gap-8">
+          <button onClick={() => setMode('MANUAL')} className="bg-slate-900/80 backdrop-blur-md p-10 rounded-3xl border border-white/10 hover:border-cyan-400/50 transition-all flex flex-col items-center gap-4 shadow-2xl">
+             <Cpu className="text-cyan-400 w-12 h-12" />
+             <span className="text-xl font-bold text-white tracking-widest">CONTROL</span>
           </button>
-          <button onClick={() => setMode('MANUAL')} className="bg-slate-900/50 p-6 rounded-2xl border border-slate-700 hover:border-green-400 transition-all flex flex-col items-center gap-3">
-            <Cpu className="text-green-400" /><span className="text-xs text-white font-bold">CONTROL</span>
-          </button>
-          <button onClick={() => setMode('SEQUENCE')} className="bg-slate-900/50 p-6 rounded-2xl border border-slate-700 hover:border-purple-400 transition-all flex flex-col items-center gap-3">
-            <PlayCircle className="text-purple-400" /><span className="text-xs text-white font-bold">SEQUENCE</span>
-          </button>
-          <button onClick={() => setMode('FIRMWARE')} className="bg-slate-900/50 p-6 rounded-2xl border border-slate-700 hover:border-orange-400 transition-all flex flex-col items-center gap-3">
-            <Terminal className="text-orange-400" /><span className="text-xs text-white font-bold">FIRMWARE</span>
+          <button onClick={() => setMode('LEARN')} className="bg-slate-900/80 backdrop-blur-md p-10 rounded-3xl border border-white/10 hover:border-cyan-400/50 transition-all flex flex-col items-center gap-4 shadow-2xl">
+             <BookOpen className="text-cyan-400 w-12 h-12" />
+             <span className="text-xl font-bold text-white tracking-widest">LEARN</span>
           </button>
         </div>
-      </div>
-      <div className="h-full max-h-[500px] w-full bg-slate-900/30 rounded-3xl border border-slate-800 shadow-2xl overflow-hidden">
-        <RobotSimulator state={robotState} />
       </div>
     </div>
   );
